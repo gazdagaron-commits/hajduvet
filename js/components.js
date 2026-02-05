@@ -165,11 +165,6 @@ function createFooter() {
     const pagesPrefix = getPagesPrefix(); // Pages mappában lévő oldalakhoz
     
     const footerHTML = `
-    <!-- Verzió badge -->
-    <div class="version-badge" onclick="console.log('[DEBUG] Verzió: ${APP_VERSION}'); alert('Hajduvet Weboldal\\nVerzió: ${APP_VERSION}\\nKészült: 2024');">
-        v${APP_VERSION}
-    </div>
-    
     <footer class="bg-hajdu-navy text-white">
         <!-- Top Footer -->
         <div class="container mx-auto px-4 py-16">
@@ -266,8 +261,6 @@ function createFooter() {
                     </p>
                     <div class="flex items-center gap-6 text-sm">
                         <a href="${pagesPrefix}kapcsolat.html" class="text-gray-400 hover:text-white transition-colors">Kapcsolat</a>
-                        <span class="text-gray-600">|</span>
-                        <span class="text-gray-500">v${APP_VERSION}</span>
                     </div>
                 </div>
             </div>
