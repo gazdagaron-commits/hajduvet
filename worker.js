@@ -1,56 +1,46 @@
-// Cloudflare Worker entry that serves the built Vite assets from the configured
-// Assets binding. The SPA fallback is handled by the `serve_single_page_app`
-// setting in `wrangler.toml`.
-
-const isHtmlRequest = (request) => {
-  const url = new URL(request.url);
-  const acceptHeader = request.headers.get("Accept") || "";
-  const hasExtension = /\.[^/]+$/.test(url.pathname);
-
-  return acceptHeader.includes("text/html") && !hasExtension;
-};
-
-const serveSpa = async (request, env) => {
-  // Always fetch the SPA shell as a GET request to avoid reusing non-GET bodies.
-  const spaRequest = new Request(new URL("/index.html", request.url), {
-    method: "GET",
-    headers: request.headers,
-  });
-
-  const spaResponse = await env.ASSETS.fetch(spaRequest);
-  const headers = new Headers(spaResponse.headers);
-  headers.set("Content-Type", "text/html; charset=UTF-8");
-
-  return new Response(spaResponse.body, {
-    status: 200,
-    headers,
-  });
-};
+// Cloudflare Worker - Hajduvet statikus oldal
 
 export default {
   async fetch(request, env) {
-    try {
-      const response = await env.ASSETS.fetch(request);
+    const url = new URL(request.url);
+    let pathname = url.pathname;
 
-      // If the asset exists (or another status like 500), return it as-is.
-      if (response.status !== 404) {
-        return response;
-      }
-
-      // For HTML navigations (real routes without file extensions) fall back to the SPA shell.
-      if (isHtmlRequest(request)) {
-        return await serveSpa(request, env);
-      }
-
-      return response;
-    } catch {
-      // If anything goes wrong while fetching assets, still try to serve the SPA for HTML requests.
-      if (isHtmlRequest(request)) {
-        return await serveSpa(request, env);
-      }
-
-      // Non-HTML requests should surface the original error as a 500.
-      return new Response("Internal Server Error", { status: 500 });
+    // Gyökér -> index.html
+    if (pathname === '/' || pathname === '') {
+      pathname = '/index.html';
     }
+    
+    // Ha nincs kiterjesztés, próbáljuk meg .html-lel
+    if (!pathname.includes('.')) {
+      // Először próbáljuk a pages mappában
+      const pagesPath = `/pages${pathname}.html`;
+      const pagesRequest = new Request(new URL(pagesPath, request.url), request);
+      const pagesResponse = await env.ASSETS.fetch(pagesRequest);
+      
+      if (pagesResponse.status === 200) {
+        return pagesResponse;
+      }
+      
+      // Ha nem található a pages-ben, próbáljuk a gyökérben
+      pathname = `${pathname}.html`;
+    }
+
+    // Kérés az asset-hez
+    const assetRequest = new Request(new URL(pathname, request.url), request);
+    const response = await env.ASSETS.fetch(assetRequest);
+
+    // Ha megtalálta, visszaadjuk
+    if (response.status === 200) {
+      return response;
+    }
+
+    // 404 - egyedi hibaoldal
+    const notFoundRequest = new Request(new URL('/404.html', request.url), request);
+    const notFoundResponse = await env.ASSETS.fetch(notFoundRequest);
+    
+    return new Response(notFoundResponse.body, {
+      status: 404,
+      headers: notFoundResponse.headers
+    });
   },
 };
