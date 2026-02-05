@@ -1,0 +1,5 @@
+# Cloudflare Pages - Redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# 404 oldal
+/*  /404.html  404

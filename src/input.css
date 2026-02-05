@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-body text-text-primary bg-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  /* Navigációs gombok */
+  .nav-link {
+    @apply relative px-4 py-2 text-text-primary font-medium transition-all duration-300;
+    @apply hover:text-hajdu-primary;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 w-0 h-0.5 bg-hajdu-primary transition-all duration-300;
+    transform: translateX(-50%);
+  }
+  
+  .nav-link:hover::after {
+    @apply w-3/4;
+  }
+  
+  .nav-link.active {
+    @apply text-hajdu-primary;
+  }
+  
+  .nav-link.active::after {
+    @apply w-3/4;
+  }
+  
+  /* Gombok */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-hajdu-primary text-white font-semibold rounded-lg;
+    @apply transition-all duration-300 transform;
+    @apply hover:bg-hajdu-dark hover:shadow-hover hover:-translate-y-0.5;
+    @apply focus:outline-none focus:ring-2 focus:ring-hajdu-primary focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-white text-hajdu-primary font-semibold rounded-lg;
+    @apply border-2 border-hajdu-primary transition-all duration-300 transform;
+    @apply hover:bg-hajdu-primary hover:text-white hover:-translate-y-0.5;
+    @apply focus:outline-none focus:ring-2 focus:ring-hajdu-primary focus:ring-offset-2;
+  }
+  
+  .btn-accent {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-hajdu-secondary text-white font-semibold rounded-lg;
+    @apply transition-all duration-300 transform;
+    @apply hover:bg-hajdu-accent hover:shadow-hover hover:-translate-y-0.5;
+    @apply focus:outline-none focus:ring-2 focus:ring-hajdu-secondary focus:ring-offset-2;
+  }
+  
+  /* Kártyák */
+  .card {
+    @apply bg-white rounded-xl shadow-card p-6 transition-all duration-300;
+    @apply hover:shadow-hover hover:-translate-y-1;
+  }
+  
+  .card-bordered {
+    @apply card border border-gray-100;
+  }
+  
+  /* Szolgáltatás kártya */
+  .service-card {
+    @apply card relative overflow-hidden;
+  }
+  
+  .service-card::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-hajdu-primary to-hajdu-secondary;
+  }
+  
+  /* Termék kártya */
+  .product-card {
+    @apply bg-white rounded-xl overflow-hidden shadow-card transition-all duration-300;
+    @apply hover:shadow-hover hover:-translate-y-2;
+  }
+  
+  .product-card-header {
+    @apply bg-gradient-to-r from-hajdu-primary to-hajdu-secondary p-4;
+  }
+  
+  /* Szekció címek */
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-text-primary mb-4;
+  }
+  
+  .section-subtitle {
+    @apply text-lg text-text-secondary max-w-2xl;
+  }
+  
+  /* Hero szekció */
+  .hero-gradient {
+    @apply bg-gradient-to-br from-hajdu-light via-white to-hajdu-lighter;
+  }
+  
+  /* Táblázat stílusok */
+  .data-table {
+    @apply w-full border-collapse rounded-lg overflow-hidden shadow-soft;
+  }
+  
+  .data-table thead {
+    @apply bg-gradient-to-r from-hajdu-primary to-hajdu-secondary text-white;
+  }
+  
+  .data-table th {
+    @apply px-4 py-3 text-left font-semibold;
+  }
+  
+  .data-table td {
+    @apply px-4 py-3 border-b border-gray-100;
+  }
+  
+  .data-table tbody tr {
+    @apply transition-colors duration-200;
+  }
+  
+  .data-table tbody tr:hover {
+    @apply bg-hajdu-light;
+  }
+  
+  .data-table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+  
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  .badge-primary {
+    @apply badge bg-hajdu-light text-hajdu-primary;
+  }
+  
+  .badge-success {
+    @apply badge bg-green-100 text-green-700;
+  }
+  
+  /* Input mezők */
+  .input-field {
+    @apply w-full px-4 py-3 border border-gray-200 rounded-lg transition-all duration-300;
+    @apply focus:outline-none focus:border-hajdu-primary focus:ring-2 focus:ring-hajdu-light;
+  }
+  
+  .input-label {
+    @apply block text-sm font-medium text-text-secondary mb-2;
+  }
+  
+  /* Ikonok konténer */
+  .icon-box {
+    @apply w-14 h-14 rounded-lg bg-hajdu-light flex items-center justify-center text-hajdu-primary;
+    @apply transition-all duration-300;
+  }
+  
+  .icon-box:hover {
+    @apply bg-hajdu-primary text-white;
+  }
+  
+  /* Animációs osztályok */
+  .animate-on-scroll {
+    @apply opacity-0;
+  }
+  
+  .animate-on-scroll.visible {
+    @apply animate-fade-in;
+  }
+  
+  /* Verzió badge */
+  .version-badge {
+    @apply fixed bottom-4 right-4 bg-hajdu-primary text-white px-3 py-1 rounded-full text-xs font-medium opacity-70;
+    @apply hover:opacity-100 transition-opacity duration-300 z-50;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-hajdu-primary to-hajdu-secondary;
+  }
+  
+  .bg-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230066B3' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+}
+
+
+

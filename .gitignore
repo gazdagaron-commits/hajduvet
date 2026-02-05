@@ -1,0 +1,32 @@
+# Függőségek
+node_modules/
+
+# Build output
+dist/
+
+# OS fájlok
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Környezeti változók (ha lennének)
+.env
+.env.local
+.env.*.local
+
+# Log fájlok
+*.log
+npm-debug.log*
+
+# Temp fájlok
+*.tmp
+*.temp
+
+# Memory bank (opcionális - ha nem akarod megosztani)
+# memory-bank/

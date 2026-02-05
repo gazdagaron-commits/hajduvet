@@ -1,0 +1,6 @@
+# HAJDUVET Kft. Security Contact
+# https://securitytxt.org/
+
+Contact: mailto:megrendeles@hajduvet.hu
+Preferred-Languages: hu, en
+Canonical: https://hajduvet.hu/.well-known/security.txt

@@ -1,0 +1,114 @@
+# HAJDUVET Weboldal - Apache Konfiguráció
+# =========================================
+
+# Engedélyezzük a RewriteEngine-t
+RewriteEngine On
+
+# HTTPS átirányítás (ha van SSL)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# www nélküli verzióra átirányítás
+# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+# RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# =========================================
+# .HTML NÉLKÜLI SZÉP URL-EK
+# =========================================
+
+# Ha a kérés nem létező fájl és nem mappa
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Ha nincs .html a végén, próbáljuk meg .html-lel
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# Pages mappa kezelése szép URL-ekkel
+# /cegtortenet -> /pages/cegtortenet.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/pages/%{REQUEST_URI}.html -f
+RewriteRule ^(.*)$ /pages/$1.html [L]
+
+# .html végződés eltávolítása az URL-ből (átirányítás)
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R=301]
+
+# =========================================
+# EGYÉNI 404-ES OLDAL
+# =========================================
+ErrorDocument 404 /404.html
+
+# =========================================
+# GYORSÍTÓTÁR BEÁLLÍTÁSOK
+# =========================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Képek - 1 hónap
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # CSS és JavaScript - 1 hét
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType text/javascript "access plus 1 week"
+    
+    # Betűtípusok - 1 év
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    
+    # HTML - nincs cache (mindig friss)
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# =========================================
+# TÖMÖRÍTÉS (GZIP)
+# =========================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# =========================================
+# BIZTONSÁGI BEÁLLÍTÁSOK
+# =========================================
+
+# Könyvtár listázás tiltása
+Options -Indexes
+
+# .htaccess és más rejtett fájlok elrejtése
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Érzékeny fájlok védelme
+<FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# X-Content-Type-Options header
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# =========================================
+# KARAKTERKÓDOLÁS
+# =========================================
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .html .css .js .json .xml

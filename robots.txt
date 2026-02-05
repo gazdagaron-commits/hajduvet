@@ -1,0 +1,11 @@
+# HAJDUVET Kft. - Robots.txt
+# https://hajduvet.hu/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap helye
+Sitemap: https://hajduvet.hu/sitemap.xml
+
+# Nem indexelendő oldalak
+Disallow: /404.html

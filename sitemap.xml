@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Főoldal -->
+    <url>
+        <loc>https://hajduvet.hu/</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Cégtörténet -->
+    <url>
+        <loc>https://hajduvet.hu/cegtortenet</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Takarmánykiegészítők főoldal -->
+    <url>
+        <loc>https://hajduvet.hu/takarmanykiegeszitok</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Termékek -->
+    <url>
+        <loc>https://hajduvet.hu/selene</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://hajduvet.hu/pantosal-new</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://hajduvet.hu/metafisiol</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://hajduvet.hu/aquacid</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://hajduvet.hu/anpro-aminovit</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://hajduvet.hu/anprosol-aminopan</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://hajduvet.hu/acesol-plus</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Szolgáltatások -->
+    <url>
+        <loc>https://hajduvet.hu/fuljelolok</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://hajduvet.hu/gyogyszeradagolo</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://hajduvet.hu/szalmonella-mentesites</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Egyéb oldalak -->
+    <url>
+        <loc>https://hajduvet.hu/palyazat</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://hajduvet.hu/kapcsolat</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+</urlset>

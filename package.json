@@ -1,0 +1,26 @@
+{
+  "name": "hajduvet-redesign",
+  "version": "1.0.0",
+  "description": "Hajduvet Kft. modern weboldal redesign - Állatgyógyszer kereskedelem",
+  "main": "index.html",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./src/input.css -o ./css/style.css --minify",
+    "watch:css": "npx tailwindcss -i ./src/input.css -o ./css/style.css --watch",
+    "dev": "npx tailwindcss -i ./src/input.css -o ./css/style.css --watch"
+  },
+  "keywords": [
+    "hajduvet",
+    "állatgyógyszer",
+    "takarmánykiegészítő",
+    "veterinary",
+    "debrecen"
+  ],
+  "author": "Hajduvet Kft.",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
+
+
+
