@@ -1,8 +1,10 @@
 name = "hajduvet"
+main = "worker.js"
 compatibility_date = "2026-02-05"
 
 [assets]
 directory = "./"
+binding = "ASSETS"
 
 [build]
 command = "npm run build:css"
